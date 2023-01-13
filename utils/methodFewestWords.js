@@ -1,7 +1,7 @@
 // const csv = [ { Speaker: 'Bernhard Belling', Topic: 'Coal Subsidies', Date: '2012-11-05', Words: 1210 }, { Speaker: 'Caesare Collins', Topic: 'Coal Subsidies', Date: '2012-11-06', Words: 1119 }, { Speaker: 'Alexander Abel', Topic: 'Internal Security', Date: '2012-12-11', Words: 911 }, { Speaker: 'Alexander Abel', Topic: 'Education Policy', Date: '2012-10-30', Words: 5310 }];
 
 // Politican with the most speeches on the topic "Internal security"
-const mostFewestWords = (data) => {
+const fewestWords = (data) => {
   
   const speakersWords = {};
 
@@ -17,21 +17,21 @@ const mostFewestWords = (data) => {
   const arrSpeakersWords = Object.values(speakersWords);
   const arrSpeakers = Object.keys(speakersWords);
 
-  const speakerWithMostWords = () => {
+  const speakerWithFewestWords = () => {
     
-    const maxValue = Math.max(...arrSpeakersWords); // 6221
-    const maxValueIndex = arrSpeakersWords.indexOf(maxValue);
-    return arrSpeakers[maxValueIndex];
+    const minValue = Math.min(...arrSpeakersWords); // 6221
+    const minValueIndex = arrSpeakersWords.indexOf(minValue);
+    return arrSpeakers[minValueIndex];
   };
 
-  return data.length ? speakerWithMostWords(): null;
+  return data.length ? speakerWithFewestWords() : null;
 
 };
 
 
-// console.log(mostFewestWords(csv));
+// console.log(fewestWords(csv));
 
 
 module.exports = {
-  mostFewestWords
+  fewestWords
 }
