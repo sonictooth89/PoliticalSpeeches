@@ -1,11 +1,16 @@
 const express = require('express');
+const { homeRouter } = require('./routers/home');
+const { evaluationRouter } = require('./routers/evaluation');
 
 const app = express();
+const port = 3000;
 
-app.get('/', (req, res) => {
-    res.json('Welcome from backend!')
-});
+app.use(express.json());
+app.use(express.static('public'));
+
+app.use('/home', homeRouter);
+app.use('/evaluation', evaluationRouter);
 
 app.listen(3000, () => {
-    console.log('Server started on port 3000: http://localhost:3000/');
+    console.log(`Server started: http://localhost:${port}/`);
 });
