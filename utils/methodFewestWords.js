@@ -5,27 +5,23 @@ const fewestWords = (data) => {
   
   const speakersWords = {};
 
-  data.forEach(row => {
-    if(speakersWords[row.Speaker]){
-      speakersWords[row.Speaker] += row.Words
-    }
-    if (!speakersWords[row.Speaker]) {
-      speakersWords[row.Speaker] = row.Words
-    }
+  data.forEach(el => {
+    if(!speakersWords[el.Speaker]){
+      speakersWords[el.Speaker] = el.Words;
+    } else {
+      speakersWords[el.Speaker] += el.Words;
+    };
   }); //{'Bernhard Belling': 1210,'Caesare Collins':1119,  'Alexander Abel': 6221}
 
-  const arrSpeakersWords = Object.values(speakersWords);
-  const arrSpeakers = Object.keys(speakersWords);
+  const arrSpeakersWords = Object.values(speakersWords); // [1210, 1119, 6221]
+  const arrSpeakers = Object.keys(speakersWords); // ['Bernhard Belling', 'Caesare Collins', 'Alexander Abel']
 
-  const speakerWithFewestWords = () => {
-    
-    const minValue = Math.min(...arrSpeakersWords); // 6221
-    const minValueIndex = arrSpeakersWords.indexOf(minValue);
-    return arrSpeakers[minValueIndex];
-  };
+  const minValue = Math.min(...arrSpeakersWords)// 6221
+  const minValueIndex = arrSpeakersWords.indexOf(minValue);
 
-  return data.length ? speakerWithFewestWords() : null;
-
+  const result = arrSpeakers[minValueIndex];
+  
+  return data.length ? result : null;
 };
 
 
