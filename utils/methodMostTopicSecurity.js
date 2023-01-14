@@ -1,4 +1,4 @@
-// const csv = [ { Speaker: 'Bernhard Belling', Topic: 'Coal Subsidies', Date: '2012-11-05', Words: 1210 }, { Speaker: 'Caesare Collins', Topic: 'Internal Security', Date: '2012-11-06', Words: 1119 }, { Speaker: 'Alexander Abel', Topic: 'Coal Subsidies', Date: '2012-12-11', Words: 911 }, { Speaker: 'Alexander Abel', Topic: 'Education Policy', Date: '2012-10-30', Words: 5310 }];
+const csv = [ { Speaker: 'Bernhard Belling', Topic: 'Coal Subsidies', Date: '2012-11-05', Words: 1210 }, { Speaker: 'Caesare Collins', Topic: 'Internal Security', Date: '2012-11-06', Words: 1119 }, { Speaker: 'Alexander Abel', Topic: 'Coal Subsidies', Date: '2012-12-11', Words: 911 }, { Speaker: 'Alexander Abel', Topic: 'Education Policy', Date: '2012-10-30', Words: 5310 }];
 
 // Politican with the most speeches on the topic "Internal security"
 const mostTopicSecurity = (data) => {
@@ -8,26 +8,25 @@ const mostTopicSecurity = (data) => {
     return el.Speaker;
   });
 
-  const countsObj = arrSpeakers.reduce((prev, cur) => {
-    prev[cur] = (prev[cur] || 0) + 1; 
+  const countsObj = arrSpeakers.reduce((prev, curr) => {
+    if (prev[curr]) {
+      prev[curr] += 1;
+    } else {
+      prev[curr] = 0;
+    }
     return prev
   }, {});
 
-  const arrSpeakerSpeeches = Object.values(countsObj);
+  const values = Object.values(countsObj);
+  const maxValue = Math.max(...values); // 2
+  const maxValueIndex = values.indexOf(maxValue);
+  
+  const result = arrSpeakers[maxValueIndex];
 
-  const speakerWithMaxSpeeches = () => {
-    const values = Object.values(countsObj);
-    const maxValue = Math.max(...values); // 2
-    const maxValueIndex = arrSpeakerSpeeches.indexOf(maxValue);
-    return arrSpeakers[maxValueIndex];
-  };
-
-  return arrOneTopic.length ? speakerWithMaxSpeeches(): null;
-
+  return arrOneTopic.length ? result : null;
 };
 
-
-// console.log(mostTopicSecurity(csv));
+console.log(mostTopicSecurity(csv));
 
 
 module.exports = {
