@@ -15,7 +15,6 @@ const mostTopicSecurity = (data) => {
     } else {
       prev[curr] = 1;
     }
-    console.log(prev)
     return prev;
   }, {});
 
