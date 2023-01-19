@@ -1,24 +1,15 @@
-const express = require('express');
-const { homeRouter } = require('./routers/home');
-const { evaluationRouter } = require('./routers/evaluation');
-const { speech1Router, speech2Router, speech3Router } = require('./routers/speeches');
-const { evaluationRouterWeb } = require('./routers/evaluation_web');
-
+const express = require("express");
+const { evaluationRouter } = require("./routers/evaluation");
+const { evaluationRouter2 } = require("./routers/evaluation2");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use(express.static('public'));
 
-app.use('/home', homeRouter);
-app.use('/evaluation', evaluationRouter);
-app.use('/evaluationweb', evaluationRouterWeb);
-
-app.use('/speech1', speech1Router);
-app.use('/speech2', speech2Router);
-app.use('/speech3', speech3Router);
+app.use("/evaluation", evaluationRouter);
+app.use("/evaluation2", evaluationRouter2);
 
 app.listen(port, () => {
-        console.log(`Server started: http://localhost:${port}/`);
-    });
+  console.log(`Server started: http://localhost:${port}/`);
+});
