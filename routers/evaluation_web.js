@@ -6,7 +6,7 @@ const { mostSpeechesYear } = require('../utils/methodMostSpeechesYear');
 const { mostTopicSecurity } = require('../utils/methodMostTopicSecurity');
 const { leastTotalWordy } = require('../utils/methodFewestWords');
 
-const evaluationRouter = express.Router();
+const evaluationRouterWeb = express.Router();
 
 evaluationRouterWeb
     .get('/', (req, res) => {
