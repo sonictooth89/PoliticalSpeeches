@@ -55,3 +55,11 @@ $ cd ../PoliticalSpeeches
 $ npm install
 $ npm start
 ```
+
+In lokal host for version with fs.readFile and fs.write file:
+```
+http://localhost:3000/evaluation?url=speech1&url=speech3&url=speech2
+```
+
+
+

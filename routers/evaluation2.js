@@ -10,6 +10,7 @@ const { leastTotalWordy } = require("../utils/methodFewestWords");
 const evaluationRouter2 = express.Router();
 
 evaluationRouter2.get("/", (req, res) => {
+  // result if no data
   if (!req.query.url) {
     return res.json({
       mostSpeeches: null,
@@ -23,6 +24,7 @@ evaluationRouter2.get("/", (req, res) => {
       ? req.query.url.map((url) => String(url))
       : [String(req.query.url)];
 
+    // reed urls und download files
     await Promise.all(
       urls.map((url) =>
         download(url, `../utils/csv/download/${url.split("/").pop()}`)
@@ -31,11 +33,11 @@ evaluationRouter2.get("/", (req, res) => {
 
     console.log("CSV files have downloaded");
 
+    // merging many downloaded files in one file
     let inputFiles = [];
     for (let url of urls) {
       inputFiles.push(url);
     }
-
     const completeData = await merge(
       inputFiles,
       (options = {
@@ -43,8 +45,8 @@ evaluationRouter2.get("/", (req, res) => {
         writeOutput: true,
       })
     );
-    console.log(completeData);
 
+    // convert csv to json + evaluete json
     const csvFilePath = "./utils/csv/mergeFile.csv";
     await csv()
       .fromFile(csvFilePath)
@@ -61,8 +63,6 @@ evaluationRouter2.get("/", (req, res) => {
 
   console.log("Program has finished!");
 });
-
-// console.log(csvData)
 
 module.exports = {
   evaluationRouter2,

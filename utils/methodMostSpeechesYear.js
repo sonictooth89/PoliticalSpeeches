@@ -1,6 +1,7 @@
 // Politican with the most speeches in 2013
 const mostSpeechesYear = (data) => {
-  const rxDatePattern = /(2013-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+  const rxDatePattern = /(2013-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/; //RegEx
+
   const arrYear = data.filter((el) => {
     return rxDatePattern.test(el.Date) ? el.Date : null;
   }); // Array with objects that the year have
@@ -26,7 +27,7 @@ const mostSpeechesYear = (data) => {
   const maxValue = Math.max(...values); // 2
   const maxValueIndex = arrSpeakerSpeeches.indexOf(maxValue);
   const result = arrSpeakers[maxValueIndex];
-  // console.log(countsObj);
+
   return arrYear.length ? result : null;
 };
 
